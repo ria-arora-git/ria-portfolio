@@ -1,103 +1,286 @@
-import Image from "next/image";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { SiHackerrank, SiLeetcode } from 'react-icons/si';
+// import { AiFillStar, AiOutlineStar } from 'react-icons/ai'; 
 
-export default function Home() {
+export default function PortfolioLanding() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="bg-gray-50 min-h-screen text-gray-900 font-sans">
+      {/* Navbar */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold tracking-tight cursor-pointer hover:text-blue-600 transition">
+            Ria Arora
+          </h1>
+          <div className="flex space-x-8 text-gray-700 font-medium">
+            <Link href="#about" className="hover:text-blue-600 transition">
+              About
+            </Link>
+            <Link href="#projects" className="hover:text-blue-600 transition">
+              Projects
+            </Link>
+            <Link href="#contact" className="hover:text-blue-600 transition">
+              Contact
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      {/* Hero Section */}
+      <section
+        id="hero"
+        className="flex flex-col items-center justify-center min-h-screen px-6 pt-28 text-center bg-white"
+      >
+        <h2 className="text-5xl sm:text-6xl font-extrabold leading-tight max-w-4xl mb-6">
+          Full Stack Developer <br /> Crafting Engaging Web Experiences
+        </h2>
+        <p className="text-gray-600 max-w-xl mb-8 text-lg sm:text-xl">
+          I build beautiful, fast, and responsive websites using React, Next.js,
+          and Tailwind CSS.
+        </p>
+        <Link
+          href="#projects"
+          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg hover:bg-blue-700 transition"
+        >
+          View My Work
+        </Link>
+      </section>
+
+      {/* About Section */}
+      <section
+        id="about"
+        className="max-w-5xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-10"
+      >
+        <div className="flex-shrink-0 w-48 h-48 rounded-full overflow-hidden shadow-lg">
+          <Image
+            src="/ria-linkedin.jpeg"
+            alt="Profile Picture"
+            width={192}
+            height={192}
+            className="object-cover"
+          />
+        </div>
+        <div className="p-6 pl-16 max-w-xl">
+          <h3 className="text-3xl font-bold mb-4">About Me</h3>
+          <p className="text-gray-700 text-lg leading-relaxed mb-8">
+            Hi, I’m Ria Arora, a passionate frontend developer focused on creating
+            performant and accessible websites. With a strong foundation in React
+            and modern CSS frameworks, I love turning ideas into digital realities.
+            When I’m not coding, I enjoy photography and hiking.
+          </p>
+
+          {/* Social Links with Star Ratings
+          <div className="space-y-4">
+            {[{
+              name: 'GitHub',
+              icon: <FaGithub className="inline text-2xl mr-2" />,
+              url: 'https://github.com/ria-arora-git',
+              rating: 4,
+            }, {
+              name: 'LeetCode',
+              icon: <SiLeetcode className="inline text-2xl mr-2" />,
+              url: 'https://leetcode.com/yourusername', 
+              rating: 3,
+            }, {
+              name: 'HackerRank',
+              icon: <SiHackerrank className="inline text-2xl mr-2" />,
+              url: 'https://www.hackerrank.com/yourusername',
+              rating: 4,
+            }].map(({ name, icon, url, rating }) => (
+              <div key={name} className="flex items-center">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-700 hover:text-blue-600 transition font-semibold mr-6"
+                >
+                  {icon}
+                  {name}
+                </a>
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) =>
+                    i < rating ? (
+                      <AiFillStar key={i} className="text-yellow-400" />
+                    ) : (
+                      <AiOutlineStar key={i} className="text-gray-300" />
+                    )
+                  )}
+                </div>
+              </div>
+            ))}
+          </div> */}
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="bg-white py-20 px-6">
+  <div className="max-w-7xl mx-auto">
+    <h3 className="text-3xl font-bold mb-12 text-center">My Projects</h3>
+    <div className="grid gap-10 md:grid-cols-3">
+      {[
+        {
+          title: "Video Conferencing",
+          description: "A real-time video conferencing app built with WebRTC and React.",
+          techStack: "React, WebRTC, Node.js, Socket.io",
+          repoUrl: "https://github.com/ria-arora-git/video-conferencing",
+          liveUrl: "https://video-conferencing-demo-url.com",
+          imageUrl: "/projects/video-conferencing.png", 
+        },
+        {
+          title: "YouTube to MP3 Converter",
+          description: "Convert YouTube videos to MP3 format with a clean UI.",
+          techStack: "React, Node.js, Express, yt-dlp",
+          repoUrl: "https://github.com/ria-arora-git/ytmp3",
+          liveUrl: "https://ytmp3.ria.acmsscbs.in",
+          imageUrl: "/projects/ytmp3.png",
+        },
+        {
+          title: "RentoAI",
+          description: "AI-powered rental platform for smart property management.",
+          techStack: "React, Next.js, Python, AI/ML",
+          repoUrl: "https://github.com/ria-arora-git/RentoAI",
+          liveUrl: "https://rentoai-demo-url.com",
+          imageUrl: "/projects/rentoai.png",
+        },
+        {
+          title: "BOND-SERVER",
+          description: "Backend server with REST APIs for social networking app.",
+          techStack: "Node.js, Express, Prisma, PostgreSQL",
+          repoUrl: "https://github.com/ria-arora-git/BOND-SERVER",
+          liveUrl: null,
+          imageUrl: "/projects/bond-server.png",
+        },
+        {
+          title: "CBS Confession App",
+          description: "Anonymous confession app with reactions and reports feature.",
+          techStack: "Next.js, Prisma, Clerk, PostgreSQL",
+          repoUrl: "https://github.com/ria-arora-git/CBS-Confession",
+          liveUrl: "https://cbs-confession-demo-url.com",
+          imageUrl: "/projects/cbs-confession.png",
+        },
+        {
+          title: "Notes App (Django)",
+          description: "Simple notes app with authentication and CRUD operations.",
+          techStack: "Python, Django, SQLite",
+          repoUrl: "https://github.com/ria-arora-git/notes-app-django",
+          liveUrl: null,
+          imageUrl: "/projects/notes-app.png",
+        },
+      ].map(({ title, description, techStack, repoUrl, liveUrl, imageUrl }, index) => (
+        <div
+          key={index}
+          className="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition cursor-pointer flex flex-col"
+        >
+          {/* Project Image Placeholder */}
+          <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+            <Image
+              src={imageUrl}
+              alt={title}
+              width={400}
+              height={200}
+              className="object-cover w-full h-full"
+            />
+
+          </div>
+
+          <div className="p-6 flex-grow flex flex-col justify-between">
+            <div>
+              <h4 className="text-xl font-semibold mb-2">{title}</h4>
+              <p className="text-gray-600 mb-2">{description}</p>
+              <p className="text-sm font-medium text-blue-600 mb-4">Tech Stack: {techStack}</p>
+            </div>
+            <div className="flex space-x-6">
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 font-semibold hover:underline"
+              >
+                View Repo
+              </a>
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-600 font-semibold hover:underline"
+                >
+                  Live Demo
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+      {/* Contact Section */}
+      <section
+        id="contact"
+        className="max-w-4xl mx-auto px-6 py-20 text-center"
+      >
+        <h3 className="text-3xl font-bold mb-8">Get In Touch</h3>
+        <p className="mb-8 text-gray-700 max-w-xl mx-auto">
+          Interested in working together or want to say hello? Feel free to
+          reach out via email or social media.
+        </p>
+        <a
+          href="mailto:rubycodes.dev@gmail.com"
+          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg hover:bg-blue-700 transition mb-8"
+        >
+          Email Me
+        </a>
+        <div className="flex justify-center space-x-8 text-3xl text-gray-600 hover:text-blue-600 transition">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://www.linkedin.com/in/ria-arora-9a91a6317/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-blue-700"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            <FaLinkedin />
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/ria-arora-git"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-gray-900"
           >
-            Read our docs
+            <FaGithub />
+          </a>
+          <a
+            href="https://www.hackerrank.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="HackerRank"
+            className="hover:text-green-600"
+          >
+            <SiHackerrank />
+          </a>
+          <a
+            href="https://leetcode.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LeetCode"
+            className="hover:text-yellow-600"
+          >
+            <SiLeetcode />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-100 py-6 text-center text-gray-600 text-sm">
+        &copy; {new Date().getFullYear()} Ria Arora. All rights reserved.
       </footer>
-    </div>
+    </main>
   );
 }
