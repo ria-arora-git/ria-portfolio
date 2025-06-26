@@ -1,286 +1,215 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { SiHackerrank, SiLeetcode } from 'react-icons/si';
-// import { AiFillStar, AiOutlineStar } from 'react-icons/ai'; 
+"use client";
 
-export default function PortfolioLanding() {
+import { useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import {
+  FaReact,
+  FaNodeJs,
+  FaJs,
+  FaCss3Alt,
+  FaHtml5,
+  FaCube,
+} from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+import ProjectCard from "../components/ProjectCard";
+import { techStacks } from "../lib/constants";
+
+const Sphere = () => {
+  const meshRef = useRef<any>();
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.005;
+    }
+  });
+
   return (
-    <main className="bg-gray-50 min-h-screen text-gray-900 font-sans">
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight cursor-pointer hover:text-blue-600 transition">
-            Ria Arora
-          </h1>
-          <div className="flex space-x-8 text-gray-700 font-medium">
-            <Link href="#about" className="hover:text-blue-600 transition">
-              About
-            </Link>
-            <Link href="#projects" className="hover:text-blue-600 transition">
-              Projects
-            </Link>
-            <Link href="#contact" className="hover:text-blue-600 transition">
-              Contact
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <mesh ref={meshRef} scale={[1.5, 1.5, 1.5]}>
+      <icosahedronGeometry args={[1, 1]} />
+      <meshStandardMaterial color="#00bcd4" wireframe />
+    </mesh>
+  );
+};
+
+export default function HomePage() {
+  const [repos, setRepos] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/ria-arora-git/repos")
+      .then((res) => res.json())
+      .then((data) => {
+        const filtered = data
+          .filter((repo: any) =>
+            [
+              "ytmp3-frontend",
+              "CBS-Confession",
+              "truth-and-dare",
+              "video-conferencing",
+              "notes-app-django",
+              "Scoop-Schools",
+              "RentoAI",
+              "To-do-App",
+              "Travel-booking-website",
+              "Space-Exploration",
+              "Summarize-Text",
+              "Advice-Generator",
+              "Weather-App"
+            ].includes(repo.name)
+          )
+
+          .sort(
+            (a: any, b: any) =>
+              new Date(b.updated_at).getTime() -
+              new Date(a.updated_at).getTime()
+          );
+        setRepos(filtered);
+      });
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-black via-[#0a0f29] to-black text-white font-sans">
+      <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-700">
+        <h1 className="text-xl font-bold">Ria Arora</h1>
+        <nav className="space-x-6">
+          <Link href="#projects">Projects</Link>
+          <Link href="#competitions">Competitions</Link>
+          <Link href="#contact">Contact</Link>
+        </nav>
+      </header>
 
       {/* Hero Section */}
-      <section
-        id="hero"
-        className="flex flex-col items-center justify-center min-h-screen px-6 pt-28 text-center bg-white"
-      >
-        <h2 className="text-5xl sm:text-6xl font-extrabold leading-tight max-w-4xl mb-6">
-          Full Stack Developer <br /> Crafting Engaging Web Experiences
-        </h2>
-        <p className="text-gray-600 max-w-xl mb-8 text-lg sm:text-xl">
-          I build beautiful, fast, and responsive websites using React, Next.js,
-          and Tailwind CSS.
-        </p>
-        <Link
-          href="#projects"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg hover:bg-blue-700 transition"
+      <section className="relative h-[90vh] flex items-center justify-center">
+        <Canvas
+          className="absolute top-0 left-0 z-0"
+          style={{ width: "700px", height: "1000px" }}
         >
-          View My Work
-        </Link>
-      </section>
+          <ambientLight intensity={0.7} />
+          <pointLight position={[5, 5, 5]} />
+          <Sphere />
+          <OrbitControls enableZoom={false} />
+        </Canvas>
 
-      {/* About Section */}
-      <section
-        id="about"
-        className="max-w-5xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-10"
-      >
-        <div className="flex-shrink-0 w-48 h-48 rounded-full overflow-hidden shadow-lg">
-          <Image
-            src="/ria-linkedin.jpeg"
-            alt="Profile Picture"
-            width={192}
-            height={192}
-            className="object-cover"
-          />
-        </div>
-        <div className="p-6 pl-16 max-w-xl">
-          <h3 className="text-3xl font-bold mb-4">About Me</h3>
-          <p className="text-gray-700 text-lg leading-relaxed mb-8">
-            Hi, I’m Ria Arora, a passionate frontend developer focused on creating
-            performant and accessible websites. With a strong foundation in React
-            and modern CSS frameworks, I love turning ideas into digital realities.
-            When I’m not coding, I enjoy photography and hiking.
+        <motion.div
+          className="z-10 text-center pr-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Hi, I'm Ria 👋
+          </h2>
+          <p className="text-xl md:text-2xl mb-6">
+            Full Stack Developer | React, Next.js & AI Enthusiast
           </p>
-
-          {/* Social Links with Star Ratings
-          <div className="space-y-4">
-            {[{
-              name: 'GitHub',
-              icon: <FaGithub className="inline text-2xl mr-2" />,
-              url: 'https://github.com/ria-arora-git',
-              rating: 4,
-            }, {
-              name: 'LeetCode',
-              icon: <SiLeetcode className="inline text-2xl mr-2" />,
-              url: 'https://leetcode.com/yourusername', 
-              rating: 3,
-            }, {
-              name: 'HackerRank',
-              icon: <SiHackerrank className="inline text-2xl mr-2" />,
-              url: 'https://www.hackerrank.com/yourusername',
-              rating: 4,
-            }].map(({ name, icon, url, rating }) => (
-              <div key={name} className="flex items-center">
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-700 hover:text-blue-600 transition font-semibold mr-6"
-                >
-                  {icon}
-                  {name}
-                </a>
-                <div className="flex space-x-1">
-                  {[...Array(5)].map((_, i) =>
-                    i < rating ? (
-                      <AiFillStar key={i} className="text-yellow-400" />
-                    ) : (
-                      <AiOutlineStar key={i} className="text-gray-300" />
-                    )
-                  )}
-                </div>
-              </div>
-            ))}
-          </div> */}
-        </div>
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 text-3xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <FaHtml5 title="HTML5" />
+            <FaCss3Alt title="CSS3" />
+            <FaJs title="JavaScript" />
+            <SiTypescript title="TypeScript" />
+            <FaReact title="React" />
+            <SiNextdotjs title="Next.js" />
+            <SiTailwindcss title="Tailwind CSS" />
+            <FaCube title="Three.js" />
+            <FaNodeJs title="Node.js" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="bg-white py-20 px-6">
-  <div className="max-w-7xl mx-auto">
-    <h3 className="text-3xl font-bold mb-12 text-center">My Projects</h3>
-    <div className="grid gap-10 md:grid-cols-3">
-      {[
-        {
-          title: "Video Conferencing",
-          description: "A real-time video conferencing app built with WebRTC and React.",
-          techStack: "React, WebRTC, Node.js, Socket.io",
-          repoUrl: "https://github.com/ria-arora-git/video-conferencing",
-          liveUrl: "https://video-conferencing-demo-url.com",
-          imageUrl: "/projects/video-conferencing.png", 
-        },
-        {
-          title: "YouTube to MP3 Converter",
-          description: "Convert YouTube videos to MP3 format with a clean UI.",
-          techStack: "React, Node.js, Express, yt-dlp",
-          repoUrl: "https://github.com/ria-arora-git/ytmp3",
-          liveUrl: "https://ytmp3.ria.acmsscbs.in",
-          imageUrl: "/projects/ytmp3.png",
-        },
-        {
-          title: "RentoAI",
-          description: "AI-powered rental platform for smart property management.",
-          techStack: "React, Next.js, Python, AI/ML",
-          repoUrl: "https://github.com/ria-arora-git/RentoAI",
-          liveUrl: "https://rentoai-demo-url.com",
-          imageUrl: "/projects/rentoai.png",
-        },
-        {
-          title: "BOND-SERVER",
-          description: "Backend server with REST APIs for social networking app.",
-          techStack: "Node.js, Express, Prisma, PostgreSQL",
-          repoUrl: "https://github.com/ria-arora-git/BOND-SERVER",
-          liveUrl: null,
-          imageUrl: "/projects/bond-server.png",
-        },
-        {
-          title: "CBS Confession App",
-          description: "Anonymous confession app with reactions and reports feature.",
-          techStack: "Next.js, Prisma, Clerk, PostgreSQL",
-          repoUrl: "https://github.com/ria-arora-git/CBS-Confession",
-          liveUrl: "https://cbs-confession-demo-url.com",
-          imageUrl: "/projects/cbs-confession.png",
-        },
-        {
-          title: "Notes App (Django)",
-          description: "Simple notes app with authentication and CRUD operations.",
-          techStack: "Python, Django, SQLite",
-          repoUrl: "https://github.com/ria-arora-git/notes-app-django",
-          liveUrl: null,
-          imageUrl: "/projects/notes-app.png",
-        },
-      ].map(({ title, description, techStack, repoUrl, liveUrl, imageUrl }, index) => (
-        <div
-          key={index}
-          className="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition cursor-pointer flex flex-col"
-        >
-          {/* Project Image Placeholder */}
-          <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-            <Image
-              src={imageUrl}
-              alt={title}
-              width={400}
-              height={200}
-              className="object-cover w-full h-full"
-            />
-
-          </div>
-
-          <div className="p-6 flex-grow flex flex-col justify-between">
-            <div>
-              <h4 className="text-xl font-semibold mb-2">{title}</h4>
-              <p className="text-gray-600 mb-2">{description}</p>
-              <p className="text-sm font-medium text-blue-600 mb-4">Tech Stack: {techStack}</p>
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href={repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 font-semibold hover:underline"
-              >
-                View Repo
-              </a>
-              {liveUrl && (
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-600 font-semibold hover:underline"
-                >
-                  Live Demo
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
+      {/* Projects Section */}
+<section id="projects" className="px-6 py-16 overflow-hidden">
+  <h2 className="text-3xl font-semibold mb-10 text-center">Projects</h2>
+  
+  <motion.div
+    className="flex gap-6 w-max"
+    animate={{ x: ["0%", "-50%"] }}
+    transition={{
+      repeat: Infinity,
+      repeatType: "loop",
+      duration: 30,
+      ease: "linear",
+    }}
+  >
+    {[...repos, ...repos].map((repo, index) => (
+      <div key={`${repo.id}-${index}`} className="min-w-[300px]">
+        <ProjectCard repo={repo} techStack={techStacks[repo.name] || []} />
+      </div>
+    ))}
+  </motion.div>
 </section>
 
 
+      {/* Competitions Section */}
+      <section id="competitions" className="px-6 py-16 bg-[#0a0f29]">
+        <h2 className="text-3xl font-semibold mb-10 text-center">
+          Competitions & Achievements
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <motion.div
+            className="bg-[#111827] p-6 rounded-lg shadow"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl font-bold">Achievements</h3>
+            <ul className="list-disc ml-6 mt-2 text-gray-300">
+              <li>Rechersion’24 (Rank 12) – NITK Surathkal – Dec 2024</li>
+              <li>CryptAI (Top 20) – DTU, New Delhi – Feb 2025</li>
+            </ul>
+          </motion.div>
+          <motion.div
+            className="bg-[#111827] p-6 rounded-lg shadow"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl font-bold">Participation</h3>
+            <ul className="list-disc ml-6 mt-2 text-gray-300">
+              <li>Code Kshetra 2.0 – JIMS</li>
+              <li>Empower Hackathon – IIMA x Ashoka</li>
+              <li>Hack&Chill2.0 – GDGC ADIPS</li>
+              <li>Error 404 – DTU, New Delhi</li>
+              <li>Tom Riddle's Trials – IIIT Naya Raipur</li>
+              <li>Excelerate: FIC Edition – Kirori Mal College</li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Contact Section */}
-      <section
-        id="contact"
-        className="max-w-4xl mx-auto px-6 py-20 text-center"
-      >
-        <h3 className="text-3xl font-bold mb-8">Get In Touch</h3>
-        <p className="mb-8 text-gray-700 max-w-xl mx-auto">
-          Interested in working together or want to say hello? Feel free to
-          reach out via email or social media.
-        </p>
-        <a
-          href="mailto:rubycodes.dev@gmail.com"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg hover:bg-blue-700 transition mb-8"
-        >
-          Email Me
-        </a>
-        <div className="flex justify-center space-x-8 text-3xl text-gray-600 hover:text-blue-600 transition">
-          <a
-            href="https://www.linkedin.com/in/ria-arora-9a91a6317/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-blue-700"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://github.com/ria-arora-git"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hover:text-gray-900"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://www.hackerrank.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="HackerRank"
-            className="hover:text-green-600"
-          >
-            <SiHackerrank />
-          </a>
-          <a
-            href="https://leetcode.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LeetCode"
-            className="hover:text-yellow-600"
-          >
-            <SiLeetcode />
-          </a>
+      <section id="contact" className="px-6 py-16">
+        <h2 className="text-3xl font-semibold mb-10 text-center">Contact Me</h2>
+        <div className="text-center">
+          <p className="text-gray-300 mb-4">
+            Email:{" "}
+            <a href="mailto:ria.arora@example.com" className="underline">
+              rubycode.dev@gmail.com
+            </a>
+          </p>
+          <p className="text-gray-300">
+            GitHub:{" "}
+            <a href="https://github.com/ria-arora-git" className="underline">
+              ria-arora-git
+            </a>
+          </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-100 py-6 text-center text-gray-600 text-sm">
-        &copy; {new Date().getFullYear()} Ria Arora. All rights reserved.
+      <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">
+        © 2025 Ria Arora. All rights reserved.
       </footer>
-    </main>
+    </div>
   );
 }
