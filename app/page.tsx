@@ -13,10 +13,16 @@ import {
 } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useAnimationFrame,
+  useAnimation,
+} from "framer-motion";
 
 import ProjectCard from "../components/ProjectCard";
 import { techStacks } from "../lib/constants";
+import CarouselMotionWrapper from "@/components/CarouselMotionWrapper";
 
 const Sphere = () => {
   const meshRef = useRef<any>();
@@ -47,7 +53,7 @@ export default function HomePage() {
             [
               "ytmp3-frontend",
               "CBS-Confession",
-              "truth-and-dare",
+              "truth and dare",
               "video-conferencing",
               "notes-app-django",
               "Scoop-Schools",
@@ -55,9 +61,8 @@ export default function HomePage() {
               "To-do-App",
               "Travel-booking-website",
               "Space-Exploration",
-              "Summarize-Text",
               "Advice-Generator",
-              "Weather-App"
+              "Weather-App",
             ].includes(repo.name)
           )
 
@@ -70,8 +75,22 @@ export default function HomePage() {
       });
   }, []);
 
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({
+      x: ["0%", "-50%"],
+      transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 30,
+        ease: "linear",
+      },
+    });
+  }, [controls]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-[#0a0f29] to-black text-white font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-black via-blue-950 to-black text-white font-sans">
       <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-700">
         <h1 className="text-xl font-bold">Ria Arora</h1>
         <nav className="space-x-6">
@@ -82,7 +101,10 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center">
+      <section
+        className="relative h-[90vh] flex items-center justify-center
+"
+      >
         <Canvas
           className="absolute top-0 left-0 z-0"
           style={{ width: "700px", height: "1000px" }}
@@ -125,28 +147,20 @@ export default function HomePage() {
       </section>
 
       {/* Projects Section */}
-      {/* Projects Section */}
-<section id="projects" className="px-6 py-16 overflow-hidden">
-  <h2 className="text-3xl font-semibold mb-10 text-center">Projects</h2>
-  
-  <motion.div
-    className="flex gap-6 w-max"
-    animate={{ x: ["0%", "-50%"] }}
-    transition={{
-      repeat: Infinity,
-      repeatType: "loop",
-      duration: 30,
-      ease: "linear",
-    }}
-  >
-    {[...repos, ...repos].map((repo, index) => (
-      <div key={`${repo.id}-${index}`} className="min-w-[300px]">
-        <ProjectCard repo={repo} techStack={techStacks[repo.name] || []} />
-      </div>
-    ))}
-  </motion.div>
-</section>
+      <section id="projects" className="px-6 py-16 overflow-hidden">
+        <h2 className="text-3xl font-semibold mb-10 text-center">Projects</h2>
 
+        <CarouselMotionWrapper>
+          {[...repos, ...repos].map((repo, index) => (
+            <div key={`${repo.id}-${index}`} className="min-w-[300px] px-2">
+              <ProjectCard
+                repo={repo}
+                techStack={techStacks[repo.name] || []}
+              />
+            </div>
+          ))}
+        </CarouselMotionWrapper>
+      </section>
 
       {/* Competitions Section */}
       <section id="competitions" className="px-6 py-16 bg-[#0a0f29]">
