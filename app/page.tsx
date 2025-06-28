@@ -24,6 +24,9 @@ import ProjectCard from "../components/ProjectCard";
 import { techStacks } from "../lib/constants";
 import CarouselMotionWrapper from "@/components/CarouselMotionWrapper";
 
+import { competitions } from "../lib/competitionsData";
+import CompetitionCard from "@/components/CompetitionCard";
+
 const Sphere = () => {
   const meshRef = useRef<any>();
   useFrame(() => {
@@ -44,36 +47,53 @@ const Sphere = () => {
 export default function HomePage() {
   const [repos, setRepos] = useState<any[]>([]);
 
-  useEffect(() => {
-    fetch("https://api.github.com/users/ria-arora-git/repos")
-      .then((res) => res.json())
-      .then((data) => {
-        const filtered = data
-          .filter((repo: any) =>
-            [
-              "ytmp3-frontend",
-              "CBS-Confession",
-              "truth and dare",
-              "video-conferencing",
-              "notes-app-django",
-              "Scoop-Schools",
-              "RentoAI",
-              "To-do-App",
-              "Travel-booking-website",
-              "Space-Exploration",
-              "Advice-Generator",
-              "Weather-App",
-            ].includes(repo.name)
-          )
+useEffect(() => {
+  fetch("https://api.github.com/users/ria-arora-git/repos?per_page=100")
+    .then((res) => res.json())
+    .then((data) => {
+      const blacklist = [
+        "ria-portfolio",
+        "AI-Planet-Hackathon",
+        "ria-arora-git",
+        "AI-agent",
+        "cars-dataset-jupiter-notebook",
+        "errorm",
+        "car-showcase",
+        "threads-app",
+        "ytmp3",
+        "Youtube-Audio-Downloader",
+        "MemoraAI",
+        "BOND-SERVER",
+        "Airbnb-website",
+        "pinterest-next-app",
+        "AI-room-design",
+        "prisma",
+        "Hospital-Locator",
+        "Promptopia",
+        "ACM-PYTHON-KSS",
+        "Summarize-Text",
+        "17oct",
+        "ACM-Project-1",
+        "github-acm",
+        "github-session",
 
-          .sort(
-            (a: any, b: any) =>
-              new Date(b.updated_at).getTime() -
-              new Date(a.updated_at).getTime()
-          );
-        setRepos(filtered);
-      });
-  }, []);
+      ];
+
+      const filtered = data
+        .filter((repo: any) => !repo.fork && !blacklist.includes(repo.name))
+        .sort(
+          (a: any, b: any) =>
+            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
+
+      setRepos(filtered);
+    })
+    .catch((err) => {
+      console.error("GitHub fetch failed:", err);
+    });
+}, []);
+
+
 
   const controls = useAnimation();
 
@@ -162,44 +182,20 @@ export default function HomePage() {
         </CarouselMotionWrapper>
       </section>
 
-      {/* Competitions Section */}
-      <section id="competitions" className="px-6 py-16 bg-[#0a0f29]">
-        <h2 className="text-3xl font-semibold mb-10 text-center">
-          Competitions & Achievements
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <motion.div
-            className="bg-[#111827] p-6 rounded-lg shadow"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-bold">Achievements</h3>
-            <ul className="list-disc ml-6 mt-2 text-gray-300">
-              <li>Rechersion’24 (Rank 12) – NITK Surathkal – Dec 2024</li>
-              <li>CryptAI (Top 20) – DTU, New Delhi – Feb 2025</li>
-            </ul>
-          </motion.div>
-          <motion.div
-            className="bg-[#111827] p-6 rounded-lg shadow"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-bold">Participation</h3>
-            <ul className="list-disc ml-6 mt-2 text-gray-300">
-              <li>Code Kshetra 2.0 – JIMS</li>
-              <li>Empower Hackathon – IIMA x Ashoka</li>
-              <li>Hack&Chill2.0 – GDGC ADIPS</li>
-              <li>Error 404 – DTU, New Delhi</li>
-              <li>Tom Riddle's Trials – IIIT Naya Raipur</li>
-              <li>Excelerate: FIC Edition – Kirori Mal College</li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
+{/* 🏆 Competitions & Achievements Section */}
+    <section id="competitions" className="px-6 py-16 bg-[#0a0f29]">
+  <h2 className="text-3xl font-semibold mb-10 text-center">
+    Competitions & Achievements
+  </h2>
+  <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    {competitions.map((comp, i) => (
+      <CompetitionCard key={i} comp={comp} index={i} />
+    ))}
+  </div>
+</section>
+
+
+
 
       {/* Contact Section */}
       <section id="contact" className="px-6 py-16">

@@ -9,7 +9,7 @@ export const projectMeta: Record<string, { image: string }> = {
         image: "/truthdare.png",
     },
     "video-conferencing": {
-        image: "/video.png",
+        image: "/univo.png",
     },
     "notes-app-django": {
         image: "/django.png",
@@ -24,7 +24,7 @@ export const projectMeta: Record<string, { image: string }> = {
         image: "/todo.png",
     },
     "Travel-booking-website": {
-        image: "/travel-booking-website.png",
+        image: "/travel.png",
     },
     "Space-Exploration": {
         image: "/space.png",
@@ -34,5 +34,8 @@ export const projectMeta: Record<string, { image: string }> = {
     },
     "Weather-App": {
         image: "/weather.png",
+    },
+    "Countdown-next": {
+        image: "/countdown.png",
     },
 };
