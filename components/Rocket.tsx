@@ -5,7 +5,13 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => void }) {
+export default function Rocket({
+  onLaunchComplete,
+  shouldAnimate,
+}: {
+  onLaunchComplete: () => void;
+  shouldAnimate: boolean;
+}) {
   const rocketRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF("/rocket.glb");
   const rocketY = useRef(-2);
@@ -34,6 +40,8 @@ export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => v
   let smokeIndex = 0;
 
   useFrame(() => {
+    if (!shouldAnimate) return;
+
     if (rocketRef.current) {
       rocketY.current += 0.12;
       rocketRef.current.position.y = rocketY.current;
@@ -55,18 +63,15 @@ export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => v
 
       if (rocketY.current > 4 && !launched.current) {
         launched.current = true;
-        onLaunchComplete(); // show text sooner
+        onLaunchComplete();
       }
     }
   });
 
   return (
     <>
-      {/* Lights */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 5, 5]} intensity={1} />
-
-      {/* Rocket and smoke */}
       <primitive object={scene} ref={rocketRef} scale={1.5} position={[0, rocketY.current, 0]} />
       <primitive object={smokeParticles} />
     </>

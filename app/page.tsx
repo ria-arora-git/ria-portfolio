@@ -27,6 +27,7 @@ import CarouselMotionWrapper from "@/components/CarouselMotionWrapper";
 import { competitions } from "../lib/competitionsData";
 import CompetitionCard from "@/components/CompetitionCard";
 import ContactSection from "@/components/ContactSection";
+import ProfilesSection from "@/components/ProfilesSection";
 
 const Sphere = () => {
   const meshRef = useRef<any>();
@@ -140,9 +141,9 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Hi, I'm Ria 👋🏻
-            </h2>
+          </h2>
           <p className="text-xl md:text-2xl mb-6">
             Full Stack Developer | React, Next.js | AI-ML Enthusiast
           </p>
@@ -193,14 +194,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact Section */}
- 
-        <ContactSection />
+      {/* Coding Profiles Section */}
 
+      <ProfilesSection/>
+
+
+      {/* Contact Section */}
+
+      <ContactSection />
 
       {/* Footer */}
       <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">
-        © 2025 Ria Arora. All rights reserved.
+        © Ria Arora | Made by me with lots of love
       </footer>
     </div>
   );

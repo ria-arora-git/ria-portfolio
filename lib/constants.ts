@@ -1,6 +1,7 @@
 export const techStacks: { [key: string]: string[] } = {
   "Scoop-Schools": ["React", "Next.js", "Tailwind CSS", "Prisma"],
   "CBS-Confession": ["React", "Firebase", "Tailwind CSS", "Prisma", "Neon"],
+  "Countdown-next": ["React", "Firebase", "Tailwind CSS"],
   "truth-and-dare": ["React", "Firebase", "Tailwind CSS"],
   "notes-app-django": ["Django", "Python", "Tailwind CSS"],
   "To-do-App": ["Node.js", "SQLite", "Tailwind CSS"],

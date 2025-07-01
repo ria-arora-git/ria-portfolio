@@ -6,12 +6,7 @@ export type Competition = {
 };
 
 export const competitions: Competition[] = [
-    {
-        name: "Rechersion'24",
-        institution: "NITK Surathkal",
-        date: "Dec 2024",
-        certificateThumb: "rechersion.png"
-    },
+    
     {
         name: "CryptAI",
         institution: "DTU, New Delhi",
@@ -22,19 +17,7 @@ export const competitions: Competition[] = [
         name: "Code Kshetra 2.0",
         institution: "JIMS",
         date: "Feb 2025",
-        certificateThumb: ""
-    },
-    {
-        name: "Empower Hackathon",
-        institution: "IIMA x Ashoka",
-        date: "Feb 2025",
-        certificateThumb: ""
-    },
-    {
-        name: "Hack&Chill2.0",
-        institution: "GDGC ADIPS",
-        date: "March 2025",
-        certificateThumb: ""
+        certificateThumb: "/codekshetra.png"
     },
     {
         name: "Error 404",
@@ -53,6 +36,24 @@ export const competitions: Competition[] = [
         institution: "Hack With India",
         date: "March 2025",
         certificateThumb: "buildwithindia.png"
+    },
+    {
+        name: "Rechersion'24",
+        institution: "NITK Surathkal",
+        date: "Dec 2024",
+        certificateThumb: "rechersion.png"
+    },
+    {
+        name: "Empower Hackathon",
+        institution: "IIMA x Ashoka",
+        date: "Feb 2025",
+        certificateThumb: ""
+    },
+    {
+        name: "Hack&Chill2.0",
+        institution: "GDGC ADIPS",
+        date: "March 2025",
+        certificateThumb: ""
     },
 
 ];
