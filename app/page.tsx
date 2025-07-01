@@ -116,8 +116,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen  text-white font-sans">
-      <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-700">
-        <h1 className="text-xl font-bold">Ria Arora</h1>
+      <header className="text-xs md:text-md lg:text-lg w-full px-6 py-4 flex justify-between items-center border-b border-gray-700">
+        <h1 className="lg:text-xl md:text-lg font-bold text-xs">Ria Arora</h1>
         <nav className="space-x-6">
           <Link href="#projects">Projects</Link>
           <Link href="#competitions">Competitions</Link>
@@ -127,46 +127,53 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center">
-        <Canvas
-          className="absolute top-0 left-0 z-0"
-          style={{ width: "700px", height: "1000px" }}
-        >
-          <ambientLight intensity={0.9} />
-          <pointLight position={[5, 5, 5]} />
-          <Sphere />
-          <OrbitControls enableZoom={false} />
-        </Canvas>
+    <section className="relative h-[90vh] flex items-center justify-center px-4 sm:px-6">
+  {/* 3D Canvas – hidden on small screens */}
+  <Canvas
+    className="absolute top-0 left-0 z-0 hidden sm:block"
+    style={{
+      width: "700px",
+      height: "1000px",
+    }}
+  >
+    <ambientLight intensity={0.9} />
+    <pointLight position={[5, 5, 5]} />
+    <Sphere />
+    <OrbitControls enableZoom={false} />
+  </Canvas>
 
-        <motion.div
-          className="z-10 text-center pr-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Hi, I&apos;m Ria 👋🏻
-          </h2>
-          <p className="text-xl md:text-2xl mb-6">
-            Full Stack Developer | React, Next.js | AI-ML Enthusiast
-          </p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 text-3xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <FaHtml5 title="HTML5" />
-            <FaCss3Alt title="CSS3" />
-            <FaJs title="JavaScript" />
-            <SiTypescript title="TypeScript" />
-            <FaReact title="React" />
-            <SiNextdotjs title="Next.js" />
-            <SiTailwindcss title="Tailwind CSS" />
-            <FaCube title="Three.js" />
-            <FaNodeJs title="Node.js" />
-          </motion.div>
-        </motion.div>
-      </section>
+  {/* Intro content */}
+  <motion.div
+    className="relative z-10 flex flex-col items-center text-center"
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6">
+      Hi, I&apos;m Ria 👋🏻
+    </h2>
+    <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
+      Full‑Stack Developer | React, Next.js & AI‑ML Enthusiast
+    </p>
+    <motion.div
+      className="flex flex-wrap justify-center gap-4 text-2xl sm:text-3xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+    >
+      <FaHtml5 title="HTML5" />
+      <FaCss3Alt title="CSS3" />
+      <FaJs title="JavaScript" />
+      <SiTypescript title="TypeScript" />
+      <FaReact title="React" />
+      <SiNextdotjs title="Next.js" />
+      <SiTailwindcss title="Tailwind CSS" />
+      <FaCube title="Three.js" />
+      <FaNodeJs title="Node.js" />
+    </motion.div>
+  </motion.div>
+</section>
+
 
       {/* Projects Section */}
       <section id="projects" className="px-6 py-16 overflow-hidden">
@@ -202,6 +209,8 @@ export default function HomePage() {
       {/* Contact Section */}
 
       {/* Footer */}
+      <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">
+         Made with lots of love and three.js 💖
       <footer className="w-full  text-center border-t border-gray-700 text-gray-400">
         <ContactSection />
       </footer>

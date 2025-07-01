@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import StarBackground from "@/components/StarBackground";
 import CursorSparkleTrail from "@/components/CursorSparkleTrail";
+import Overlay from "@/components/Overlay";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -30,9 +31,13 @@ export default function RootLayout({
    return (
     <html lang="en">
       <body className="relative">
-        <CursorSparkleTrail />
-        <StarBackground />
-        {children}
+          <>
+            <Overlay />
+            <CursorSparkleTrail />
+            <StarBackground />
+            {children}
+          </>
+        
       </body>
     </html>
   );

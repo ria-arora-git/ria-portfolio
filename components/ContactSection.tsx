@@ -9,17 +9,20 @@ import Rocket from "./Rocket";
 
 const socials = [
   {
-    icon: <SiGmail size={36} />,
+
+    icon: <SiGmail size={40} />,
     url: "mailto:rubycode.dev@gmail.com",
     label: "Email",
   },
   {
-    icon: <FaGithub size={36} />,
+
+    icon: <FaGithub size={40} />,
     url: "https://github.com/ria-arora-git",
     label: "GitHub",
   },
   {
-    icon: <FaLinkedin size={36} />,
+
+    icon: <FaLinkedin size={40} />,
     url: "https://linkedin.com/in/ria-arora2005",
     label: "LinkedIn",
   },
@@ -53,12 +56,13 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
+          className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-cyan-400 drop-shadow-lg"
         >
-          <blockquote className="italic text-gray-300 border-l-4 border-cyan-500 pl-4 text-lg w-80">
-            “Programming isn’t about what you know; it’s about what you can
-            figure out.”
-          </blockquote>
+          Connect with me ✨
+        </motion.h2>
+
         </motion.div>
+
 
         {/* 3. Quick Links Section */}
         <motion.div
