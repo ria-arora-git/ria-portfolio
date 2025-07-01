@@ -1,4 +1,3 @@
-// components/Rocket.tsx
 "use client";
 
 import { useRef, useMemo } from "react";
@@ -9,7 +8,7 @@ import * as THREE from "three";
 export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => void }) {
   const rocketRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF("/rocket.glb");
-  const rocketY = useRef(-4);
+  const rocketY = useRef(-2);
   const launched = useRef(false);
 
   const smokeParticles = useMemo(() => {
@@ -24,10 +23,11 @@ export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => v
         depthWrite: false,
       });
       const sprite = new THREE.Sprite(material);
-      sprite.scale.set(0.8, 0.8, 0.8);
+      sprite.scale.set(0.6, 0.6, 0.6);
       sprite.userData.age = 0;
       group.add(sprite);
     }
+
     return group;
   }, []);
 
@@ -35,9 +35,9 @@ export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => v
 
   useFrame(() => {
     if (rocketRef.current) {
-      rocketY.current += 0.15;
+      rocketY.current += 0.12;
       rocketRef.current.position.y = rocketY.current;
-      rocketRef.current.rotation.y += 0.02;
+      rocketRef.current.rotation.y += 0.015;
 
       const smoke = smokeParticles.children[smokeIndex] as THREE.Sprite;
       smoke.position.set(0, rocketY.current - 1, 0);
@@ -49,20 +49,25 @@ export default function Rocket({ onLaunchComplete }: { onLaunchComplete: () => v
       smokeParticles.children.forEach((sprite) => {
         sprite.userData.age += 1;
         sprite.position.y += 0.01;
-        sprite.material.opacity *= 0.95;
+        sprite.material.opacity *= 0.94;
         sprite.scale.multiplyScalar(1.01);
       });
 
-      if (rocketY.current > 12 && !launched.current) {
+      if (rocketY.current > 4 && !launched.current) {
         launched.current = true;
-        onLaunchComplete();
+        onLaunchComplete(); // show text sooner
       }
     }
   });
 
   return (
     <>
-      <primitive object={scene} ref={rocketRef} scale={0.6} position={[0, rocketY.current, 0]} />
+      {/* Lights */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[3, 5, 5]} intensity={1} />
+
+      {/* Rocket and smoke */}
+      <primitive object={scene} ref={rocketRef} scale={1.5} position={[0, rocketY.current, 0]} />
       <primitive object={smokeParticles} />
     </>
   );
