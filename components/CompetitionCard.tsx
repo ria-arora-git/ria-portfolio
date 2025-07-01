@@ -18,7 +18,7 @@ export default function CompetitionCard({
 
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.2,
   });
 

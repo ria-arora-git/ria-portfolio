@@ -207,11 +207,12 @@ export default function HomePage() {
       <ProfilesSection />
 
       {/* Contact Section */}
-      <ContactSection />
 
       {/* Footer */}
       <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">
          Made with lots of love and three.js 💖
+      <footer className="w-full  text-center border-t border-gray-700 text-gray-400">
+        <ContactSection />
       </footer>
     </div>
   );
