@@ -19,7 +19,7 @@ export default function Rocket({
 
   const smokeParticles = useMemo(() => {
     const group = new THREE.Group();
-    const texture = new THREE.TextureLoader().load("/smoke.png");
+    const texture = new THREE.TextureLoader().load("/smoke.webp");
 
     for (let i = 0; i < 60; i++) {
       const material = new THREE.SpriteMaterial({
@@ -55,10 +55,11 @@ export default function Rocket({
       smokeIndex = (smokeIndex + 1) % smokeParticles.children.length;
 
       smokeParticles.children.forEach((sprite) => {
-        sprite.userData.age += 1;
-        sprite.position.y += 0.01;
-        sprite.material.opacity *= 0.94;
-        sprite.scale.multiplyScalar(1.01);
+        const s = sprite as THREE.Sprite;
+        s.userData.age += 1;
+        s.position.y += 0.01;
+        (s.material as THREE.SpriteMaterial).opacity *= 0.84;
+        s.scale.multiplyScalar(1.01);
       });
 
       if (rocketY.current > 4 && !launched.current) {
@@ -72,7 +73,7 @@ export default function Rocket({
     <>
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 5, 5]} intensity={1} />
-      <primitive object={scene} ref={rocketRef} scale={1.5} position={[0, rocketY.current, 0]} />
+      <primitive object={scene} ref={rocketRef} scale={1.2} position={[0, rocketY.current, 0]}  />
       <primitive object={smokeParticles} />
     </>
   );

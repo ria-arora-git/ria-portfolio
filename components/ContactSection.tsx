@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiLeetcode, SiGeeksforgeeks, SiGmail } from "react-icons/si";
+import { SiGmail } from "react-icons/si";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Rocket from "./Rocket";
@@ -29,8 +29,7 @@ const socials = [
 export default function ContactSection() {
   const [showInfo, setShowInfo] = useState(false);
 
-  // Detect if section is in view
-  const { ref, inView } = useInView({ threshold: 0.8, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.6, triggerOnce: false });
 
   return (
     <section
@@ -54,7 +53,7 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-5xl font-bold mb-6 text-cyan-400 drop-shadow-lg"
         >
-          Let’s Connect 🚀
+          Let’s Connect ✨
         </motion.h2>
 
         <motion.p

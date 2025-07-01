@@ -20,7 +20,9 @@ export default function StarBackground() {
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    mountRef.current?.appendChild(renderer.domElement);
+
+    const mountNode = mountRef.current;
+    mountNode?.appendChild(renderer.domElement);
 
     const starGeo = new THREE.BufferGeometry();
     const starCount = 1000;
@@ -49,7 +51,7 @@ export default function StarBackground() {
 
     window.addEventListener("resize", handleResize);
     return () => {
-      mountRef.current?.removeChild(renderer.domElement);
+      mountNode?.removeChild(renderer.domElement);
       window.removeEventListener("resize", handleResize);
     };
   }, []);

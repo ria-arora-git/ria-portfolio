@@ -2,8 +2,15 @@
 import { motion } from "framer-motion";
 import { projectMeta } from "../lib/projectMeta";
 
+type Repo = {
+  name: string;
+  description?: string;
+  html_url: string;
+  homepage?: string;
+};
+
 type ProjectCardProps = {
-  repo: any;
+  repo: Repo;
   techStack?: string[];
 };
 

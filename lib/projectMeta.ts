@@ -3,39 +3,39 @@ export const projectMeta: Record<string, { image: string }> = {
         image: "/ytmp3.png",
     },
     "CBS-Confession": {
-        image: "/cbsconfession.png",
+        image: "/cbsconfession.webp",
     },
     "truth-and-dare": {
-        image: "/truthdare.png",
+        image: "/truthdare.webp",
     },
     "video-conferencing": {
         image: "/univo.png",
     },
     "notes-app-django": {
-        image: "/django.png",
+        image: "/django.webp",
     },
     "Scoop-Schools": {
-        image: "/scoopschools.png",
+        image: "/scoopschools.webp",
     },
     "RentoAI": {
-        image: "/rento.png",
+        image: "/rento.webp",
     },
     "To-do-App": {
-        image: "/todo.png",
+        image: "/todo.webp",
     },
     "Travel-booking-website": {
         image: "/travel.png",
     },
     "Space-Exploration": {
-        image: "/space.png",
+        image: "/space.webp",
     },
     "Advice-Generator": {
-        image: "/advice.png",
+        image: "/advice.webp",
     },
     "Weather-App": {
         image: "/weather.png",
     },
     "Countdown-next": {
-        image: "/countdown.png",
+        image: "/countdown.webp",
     },
 };
