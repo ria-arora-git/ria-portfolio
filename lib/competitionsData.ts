@@ -44,16 +44,28 @@ export const competitions: Competition[] = [
         certificateThumb: "rechersion.webp"
     },
     {
-        name: "Empower Hackathon",
-        institution: "IIMA x Ashoka",
-        date: "Feb 2025",
-        certificateThumb: ""
+        name: "DSA MasterMind – MCQ Elimination Round",
+        institution: "Lets Code Community",
+        date: "June 2025",
+        certificateThumb: "codeclash1.jpg"
     },
     {
-        name: "Hack&Chill2.0",
-        institution: "GDGC ADIPS",
-        date: "March 2025",
-        certificateThumb: ""
+        name: "CodeSprint – Final Coding Round",
+        institution: "Lets Code Community",
+        date: "June 2025",
+        certificateThumb: "codeclash2.jpg"
     },
+    // {
+    //     name: "Empower Hackathon",
+    //     institution: "IIMA x Ashoka",
+    //     date: "Feb 2025",
+    //     certificateThumb: ""
+    // },
+    // {
+    //     name: "Hack&Chill2.0",
+    //     institution: "GDGC ADIPS",
+    //     date: "March 2025",
+    //     certificateThumb: ""
+    // },
 
 ];

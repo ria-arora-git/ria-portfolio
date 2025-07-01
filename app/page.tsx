@@ -200,11 +200,10 @@ export default function HomePage() {
       <ProfilesSection />
 
       {/* Contact Section */}
-      <ContactSection />
 
       {/* Footer */}
-      <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">
-        © Ria Arora | Made by me with lots of love and affection
+      <footer className="w-full  text-center border-t border-gray-700 text-gray-400">
+        <ContactSection />
       </footer>
     </div>
   );
