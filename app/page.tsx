@@ -26,6 +26,7 @@ import CarouselMotionWrapper from "@/components/CarouselMotionWrapper";
 
 import { competitions } from "../lib/competitionsData";
 import CompetitionCard from "@/components/CompetitionCard";
+import ContactSection from "@/components/ContactSection";
 
 const Sphere = () => {
   const meshRef = useRef<any>();
@@ -47,53 +48,51 @@ const Sphere = () => {
 export default function HomePage() {
   const [repos, setRepos] = useState<any[]>([]);
 
-useEffect(() => {
-  fetch("https://api.github.com/users/ria-arora-git/repos?per_page=100")
-    .then((res) => res.json())
-    .then((data) => {
-      const blacklist = [
-        "ria-portfolio",
-        "AI-Planet-Hackathon",
-        "ria-arora-git",
-        "AI-agent",
-        "cars-dataset-jupiter-notebook",
-        "errorm",
-        "car-showcase",
-        "threads-app",
-        "ytmp3",
-        "Youtube-Audio-Downloader",
-        "MemoraAI",
-        "BOND-SERVER",
-        "Airbnb-website",
-        "pinterest-next-app",
-        "AI-room-design",
-        "prisma",
-        "Hospital-Locator",
-        "Promptopia",
-        "ACM-PYTHON-KSS",
-        "Summarize-Text",
-        "17oct",
-        "ACM-Project-1",
-        "github-acm",
-        "github-session",
+  useEffect(() => {
+    fetch("https://api.github.com/users/ria-arora-git/repos?per_page=100")
+      .then((res) => res.json())
+      .then((data) => {
+        const blacklist = [
+          "ria-portfolio",
+          "AI-Planet-Hackathon",
+          "ria-arora-git",
+          "AI-agent",
+          "cars-dataset-jupiter-notebook",
+          "errorm",
+          "car-showcase",
+          "threads-app",
+          "ytmp3",
+          "Youtube-Audio-Downloader",
+          "MemoraAI",
+          "BOND-SERVER",
+          "Airbnb-website",
+          "pinterest-next-app",
+          "AI-room-design",
+          "prisma",
+          "Hospital-Locator",
+          "Promptopia",
+          "ACM-PYTHON-KSS",
+          "Summarize-Text",
+          "17oct",
+          "ACM-Project-1",
+          "github-acm",
+          "github-session",
+        ];
 
-      ];
+        const filtered = data
+          .filter((repo: any) => !repo.fork && !blacklist.includes(repo.name))
+          .sort(
+            (a: any, b: any) =>
+              new Date(b.updated_at).getTime() -
+              new Date(a.updated_at).getTime()
+          );
 
-      const filtered = data
-        .filter((repo: any) => !repo.fork && !blacklist.includes(repo.name))
-        .sort(
-          (a: any, b: any) =>
-            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-        );
-
-      setRepos(filtered);
-    })
-    .catch((err) => {
-      console.error("GitHub fetch failed:", err);
-    });
-}, []);
-
-
+        setRepos(filtered);
+      })
+      .catch((err) => {
+        console.error("GitHub fetch failed:", err);
+      });
+  }, []);
 
   const controls = useAnimation();
 
@@ -110,7 +109,7 @@ useEffect(() => {
   }, [controls]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-blue-950 to-black text-white font-sans">
+    <div className="min-h-screen  text-white font-sans">
       <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-700">
         <h1 className="text-xl font-bold">Ria Arora</h1>
         <nav className="space-x-6">
@@ -129,7 +128,7 @@ useEffect(() => {
           className="absolute top-0 left-0 z-0"
           style={{ width: "700px", height: "1000px" }}
         >
-          <ambientLight intensity={0.7} />
+          <ambientLight intensity={0.9} />
           <pointLight position={[5, 5, 5]} />
           <Sphere />
           <OrbitControls enableZoom={false} />
@@ -141,11 +140,11 @@ useEffect(() => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Hi, I'm Ria 👋
-          </h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Hi, I'm Ria 👋🏻
+            </h2>
           <p className="text-xl md:text-2xl mb-6">
-            Full Stack Developer | React, Next.js & AI Enthusiast
+            Full Stack Developer | React, Next.js | AI-ML Enthusiast
           </p>
           <motion.div
             className="flex flex-wrap justify-center gap-4 text-3xl"
@@ -182,39 +181,22 @@ useEffect(() => {
         </CarouselMotionWrapper>
       </section>
 
-{/* 🏆 Competitions & Achievements Section */}
-    <section id="competitions" className="px-6 py-16 bg-[#0a0f29]">
-  <h2 className="text-3xl font-semibold mb-10 text-center">
-    Competitions & Achievements
-  </h2>
-  <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-    {competitions.map((comp, i) => (
-      <CompetitionCard key={i} comp={comp} index={i} />
-    ))}
-  </div>
-</section>
-
-
-
-
-      {/* Contact Section */}
-      <section id="contact" className="px-6 py-16">
-        <h2 className="text-3xl font-semibold mb-10 text-center">Contact Me</h2>
-        <div className="text-center">
-          <p className="text-gray-300 mb-4">
-            Email:{" "}
-            <a href="mailto:ria.arora@example.com" className="underline">
-              rubycode.dev@gmail.com
-            </a>
-          </p>
-          <p className="text-gray-300">
-            GitHub:{" "}
-            <a href="https://github.com/ria-arora-git" className="underline">
-              ria-arora-git
-            </a>
-          </p>
+      {/* 🏆 Competitions & Achievements Section */}
+      <section id="competitions" className="px-6 py-16 ">
+        <h2 className="text-3xl font-semibold mb-10 text-center">
+          Competitions & Achievements
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {competitions.map((comp, i) => (
+            <CompetitionCard key={i} comp={comp} index={i} />
+          ))}
         </div>
       </section>
+
+      {/* Contact Section */}
+ 
+        <ContactSection />
+
 
       {/* Footer */}
       <footer className="w-full py-6 text-center border-t border-gray-700 text-gray-400">

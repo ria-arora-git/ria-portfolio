@@ -20,16 +20,16 @@ export default function CompetitionCard({ comp, index }: { comp: Competition; in
         onClick={() => hasCert && setOpen(true)}
       >
         <motion.div
-          variants={{ hover: { boxShadow: "0 0 20px rgba(0,255,255,0.5)" }, initial: {} }}
-          className="absolute inset-0 bg-cyan-400/10 rounded-2xl pointer-events-none"
+          variants={{ hover: { boxShadow: "0 0 25px rgba(255,255,255,0.9)" }, initial: {} }}
+          className="absolute inset-0 bg-blue-300/30 rounded-2xl pointer-events-none"
         />
         <motion.div
           className="relative bg-[#111827] rounded-2xl shadow-lg p-6"
           variants={{
-            hover: { scale: 1.05, y: -8, rotateZ: comp.name.length % 2 ? 2 : -2 },
+            hover: { scale: 1.05, y: 5 },  //, rotateZ: comp.name.length % 2 ? 2 : -2
             initial: {},
           }}
-          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          transition={{ type: "decay", stiffness: 200, damping: 10 }}
         >
           <h3 className="text-2xl font-bold text-white mb-2">{comp.name}</h3>
           <p className="text-gray-300 mb-1">{comp.institution}</p>
