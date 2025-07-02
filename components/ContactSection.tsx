@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
@@ -27,9 +27,13 @@ const socials = [
 ];
 
 export default function ContactSection() {
-  const [showInfo, setShowInfo] = useState(false);
-
   const { ref, inView } = useInView({ threshold: 0.6, triggerOnce: false });
+  const [trigger, setTrigger] = useState(false);
+
+  useEffect(() => {
+    if (inView) setTrigger(true);
+    else setTrigger(false);
+  }, [inView]);
 
   return (
     <section
@@ -37,19 +41,19 @@ export default function ContactSection() {
       id="contact"
       className="relative h-[60vh] w-full text-white overflow-hidden"
     >
-      {/* Background Stars and Rocket */}
+      {/* 3D Background */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
           <ambientLight intensity={0.5} />
-          <Rocket onLaunchComplete={() => setShowInfo(true)} shouldAnimate={inView} />
+          <Rocket onLaunchComplete={() => {}} shouldAnimate={inView} />
         </Canvas>
       </div>
 
-      {/* Main Content */}
+      {/* Overlay content */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center px-6">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
-          animate={showInfo ? { opacity: 1, y: 0 } : {}}
+          animate={trigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8 }}
           className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-cyan-400 drop-shadow-lg"
         >
@@ -58,7 +62,7 @@ export default function ContactSection() {
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
-          animate={showInfo ? { opacity: 1, y: 0 } : {}}
+          animate={trigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg mb-10 text-gray-200 text-center max-w-xl"
         >
@@ -67,7 +71,7 @@ export default function ContactSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={showInfo ? { opacity: 1, y: 0 } : {}}
+          animate={trigger ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex gap-6 flex-wrap justify-center"
         >

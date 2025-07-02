@@ -54,7 +54,7 @@ export default function CompetitionCard({
         <motion.div
           variants={{
             hover: {
-              boxShadow: "0 0 25px rgba(255,255,255,0.9)",
+              boxShadow: "0 0 25px rgba(119, 180, 253, 0.61)",
             },
           }}
           className="absolute inset-0 bg-blue-300/30 rounded-2xl pointer-events-none"

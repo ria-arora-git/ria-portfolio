@@ -31,10 +31,10 @@ const profileCards = [
 ];
 
 export default function ProfilesSection() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
 
   return (
-    <section id="profiles" className="px-6 py-16 mb-16 text-white" ref={ref}>
+    <section id="profiles" className="px-6 py-16 text-white" ref={ref}>
       <h2 className="text-3xl font-semibold mb-14 text-center text-cyan-400">
         Coding Profiles 🧠
       </h2>
