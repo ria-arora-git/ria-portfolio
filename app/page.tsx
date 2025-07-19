@@ -85,6 +85,9 @@ export default function HomePage() {
           "ACM-Project-1",
           "github-acm",
           "github-session",
+          "IITG-Capstone-Project",
+          "craft-site",
+          "Electric-vehicle-streamlit-dashboard"
         ];
         const filtered = (data as Repo[])
           .filter((repo) => !repo.fork && !blacklist.includes(repo.name))
