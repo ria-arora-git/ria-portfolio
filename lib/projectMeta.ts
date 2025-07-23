@@ -1,16 +1,4 @@
 export const projectMeta: Record<string, { image: string }> = {
-    "ytmp3-frontend": {
-        image: "/ytmp3.png",
-    },
-    "CBS-Confession": {
-        image: "/cbsconfession.webp",
-    },
-    "truth-and-dare": {
-        image: "/truthdare.webp",
-    },
-    "video-conferencing": {
-        image: "/univo.png",
-    },
     "notes-app-django": {
         image: "/django.webp",
     },
@@ -37,5 +25,26 @@ export const projectMeta: Record<string, { image: string }> = {
     },
     "Countdown-next": {
         image: "/countdown.webp",
+    },
+    "resume-job-recommender":{
+        image: "/jobmodel.png"
+    },
+    "hypertension-prediction-app":{
+        image: "/hypertension.png"
+    },
+    "Electric-vehicle-streamlit-dashboard":{
+        image: "/evdashboard.png"
+    },
+    "ytmp3-frontend": {
+        image: "/ytmp3.png",
+    },
+    "CBS-Confession": {
+        image: "/cbsconfession.webp",
+    },
+    "truth-and-dare": {
+        image: "/truthdare.webp",
+    },
+    "video-conferencing": {
+        image: "/univo.png",
     },
 };

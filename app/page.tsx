@@ -87,10 +87,7 @@ export default function HomePage() {
           "github-session",
           "IITG-Capstone-Project",
           "craft-site",
-          "Electric-vehicle-streamlit-dashboard",
           "nebula-nexus",
-          "hypertension-prediction-app",
-          "resume-job-recommender"
         ];
         const filtered = (data as Repo[])
           .filter((repo) => !repo.fork && !blacklist.includes(repo.name))

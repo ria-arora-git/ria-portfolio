@@ -11,7 +11,10 @@ export const techStacks: { [key: string]: string[] } = {
   "Travel-booking-website": ["html","Tailwind CSS"],
   "Space-Exploration": ["html","Tailwind CSS", "Javascript"],
   "Advice-Generator": ["html","Tailwind CSS", "Javascript"],
-  "Weather-App":["html","Tailwind CSS", "Javascript"]
+  "Weather-App":["html","Tailwind CSS", "Javascript"],
+  "resume-job-recommender":["Python", "Streamlit", "scikit-learn", "PyMuPDF", "TF-IDF"],
+  "hypertension-prediction-app":["Python", "pandas", "scikit-learn", "Streamlit", "joblib"],
+  "Electric-vehicle-streamlit-dashboard":["Python", "pandas", "scikit-learn", "Streamlit", "Plotly"]
 };
 
 
