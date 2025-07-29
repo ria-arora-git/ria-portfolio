@@ -88,6 +88,7 @@ export default function HomePage() {
           "IITG-Capstone-Project",
           "craft-site",
           "nebula-nexus",
+          "execraft"
         ];
         const filtered = (data as Repo[])
           .filter((repo) => !repo.fork && !blacklist.includes(repo.name))
