@@ -47,4 +47,10 @@ export const projectMeta: Record<string, { image: string }> = {
     "video-conferencing": {
         image: "/univo.png",
     },
+    "execraft": {
+        image: "/execraft.png",
+    },
+    "live-quiz-app": {
+        image: "/quiz.png",
+    },
 };

@@ -14,7 +14,9 @@ export const techStacks: { [key: string]: string[] } = {
   "Weather-App":["html","Tailwind CSS", "Javascript"],
   "resume-job-recommender":["Python", "Streamlit", "scikit-learn", "PyMuPDF", "TF-IDF"],
   "hypertension-prediction-app":["Python", "pandas", "scikit-learn", "Streamlit", "joblib"],
-  "Electric-vehicle-streamlit-dashboard":["Python", "pandas", "scikit-learn", "Streamlit", "Plotly"]
+  "Electric-vehicle-streamlit-dashboard":["Python", "pandas", "scikit-learn", "Streamlit", "Plotly"],
+  "execraft": ["React", "Next.js", "Tailwind CSS", "Prisma", "Neon"],
+  "live-quiz-app": ["React", "Next.js", "Tailwind CSS", "Prisma", "Neon"],
 };
 
 

@@ -88,7 +88,7 @@ export default function HomePage() {
           "IITG-Capstone-Project",
           "craft-site",
           "nebula-nexus",
-          "execraft"
+          "quiz-app-socket"
         ];
         const filtered = (data as Repo[])
           .filter((repo) => !repo.fork && !blacklist.includes(repo.name))
