@@ -61,6 +61,15 @@ export default function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         const blacklist = [
+          "Multi-user-reminder-app-flutter",
+          "AtmaAI",
+          "Data-Analysis-and-Visualization-Coursework",
+          "Call-Order-App-Offline-ggml",
+          "AutoOrder-App",
+          "DART-repo",
+          "Certificates",
+          "flutter-class",
+          "AutoOrder-backend",
           "ria-portfolio",
           "AI-Planet-Hackathon",
           "ria-arora-git",
@@ -158,7 +167,7 @@ export default function HomePage() {
       Hi, I&apos;m Ria 👋🏻
     </h2>
     <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-      Full‑Stack Developer | React, Next.js & AI‑ML Enthusiast
+      AI & ML Engineer | Android App developer | Full-stack
     </p>
     <motion.div
       className="flex flex-wrap justify-center gap-4 text-2xl sm:text-3xl"

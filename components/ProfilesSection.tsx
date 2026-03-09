@@ -25,8 +25,9 @@ const profileCards = [
     color: "text-white",
     hoverShadow: "hover:shadow-white/40",
     link: "https://github.com/ria-arora-git",
-    img: "https://github-readme-stats.vercel.app/api?username=ria-arora-git&show_icons=true&theme=radical&hide_title=true&count_private=true",
+    img: "https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=ria-arora-git&show_icons=true&theme=radical&hide_title=true&count_private=true",
     description: "View my GitHub contributions",
+    
   },
 ];
 

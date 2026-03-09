@@ -53,4 +53,16 @@ export const projectMeta: Record<string, { image: string }> = {
     "live-quiz-app": {
         image: "/quiz.png",
     },
+    "Acreminder": {
+        image: "/acreminder.png"
+    },
+    "lyrics2music-ai-project": {
+        image: "/lyrics2music.png"
+    },
+    "Vaccine-schedule-reminder": {
+        image: "/vaccine.png"
+    },
+    "RAG-Gita-AI": {
+        image: "/rag-gita.png"
+    },
 };
