@@ -98,7 +98,9 @@ export default function HomePage() {
           "craft-site",
           "nebula-nexus",
           "quiz-app-socket",
-          "medical-chatbot"
+          "medical-chatbot",
+          "Airbnb-DAV-Final-Project",
+          "langgraph-agent-autostream"
         ];
         const filtered = (data as Repo[])
           .filter((repo) => !repo.fork && !blacklist.includes(repo.name))
